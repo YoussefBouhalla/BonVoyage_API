@@ -8,18 +8,15 @@ router
     .get(StaysController.searchForStays)
     .post(StaysController.createStay)
 
-routers
+router
     .route("/:stayId")
+    .get(StaysController.getStay)
     .put(StaysController.updateStay)
     .delete(StaysController.deleteStay)
 
 router
     .route("/user/:userId")
     .get(StaysController.getUserStays)
-
-router
-    .route("/:stayId")
-    .get(StaysController.getStay)
 
 router
     .route("/count")
