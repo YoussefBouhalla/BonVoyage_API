@@ -1,8 +1,29 @@
+const { TourServices } = require("../services")
 
+const searchForTours = async (req, res) => {
 
-const searchForTours = (req, res) => {}
+    const options = {
+        title : req.body.title,
+        type: req.body.type,
+        cityId: req.body.cityId
+    }
 
-const createTour = (req, res) => {}
+    Object.keys(options).forEach(key => {
+        if(!options[key]){
+            delete options[key]
+        }
+    })
+    
+    try {
+        let tours = await TourServices.searchTours(options);
+        res.status(200).json(tours);
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
+}
+
+const createTour = async (req, res) => {
+}
 
 const getTour = (req, res) => {}
 

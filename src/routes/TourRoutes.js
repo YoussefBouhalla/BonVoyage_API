@@ -5,7 +5,7 @@ const {ToursController} = require("../controllers");
 
 router
     .route("/")
-    .get(ToursController.searchForTours)
+    .post(ToursController.searchForTours)
     .post(ToursController.createTour)
     
 router
