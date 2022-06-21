@@ -15,6 +15,11 @@ router
     .delete(ToursController.deleteTour)
 
 router
+    .route("/:tourId/image")
+    .get(ToursController.getTourImage)
+
+
+router
     .route("/:tourId/review")
     .post(ToursController.addTourReview)
 

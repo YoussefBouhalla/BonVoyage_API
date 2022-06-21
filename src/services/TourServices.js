@@ -14,6 +14,17 @@ const searchTours = async (options) => {
     })
 }
 
+const getImage = async (id) => {
+    return await prisma.tours.findUnique({
+        where: {
+            tourId: id
+        },
+        select: {
+            image: true
+        }
+    });
+}
 module.exports = {
     searchTours,
+    getImage
 }

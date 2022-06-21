@@ -1,3 +1,4 @@
+const path = require('path');
 const { TourServices } = require("../services")
 
 const searchForTours = async (req, res) => {
@@ -41,6 +42,15 @@ const getToursCount = (req, res) => {}
 
 const getRecommendedTours = (req, res) => {}
 
+const getTourImage = async (req, res) => {
+    try {
+        let tour = await TourServices.getImage(parseInt(req.params.tourId));
+        res.status(200).sendFile( path.join(path.dirname(path.dirname(__dirname)), 'public', 'uploads', 'images', 'tours', tour.image) );
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
+}
+
 module.exports = {
     searchForTours,
     createTour,
@@ -52,4 +62,5 @@ module.exports = {
     markTourAsFavorite,
     getToursCount,
     getRecommendedTours,
+    getTourImage
 }
