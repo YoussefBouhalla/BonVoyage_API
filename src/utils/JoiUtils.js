@@ -23,6 +23,27 @@ const UserSchema = Joi.object({
 })
 .with('password', 'repeat_password');
 
+const TourSchema = Joi.object({
+    title: Joi.string()
+        .min(5)
+        .max(70)
+        .required(),
+
+    description: Joi.string()
+        .min(5)
+        .max(400)
+        .required(),
+
+    season: Joi.string()
+        .valid('summer', 'winter', 'autumn', 'spring')
+        .required(),
+
+    type: Joi.string()
+        .valid('historical', 'beach', 'natural')
+        .required(),
+})
+
 module.exports = {
-    UserSchema
+    UserSchema,
+    TourSchema
 }

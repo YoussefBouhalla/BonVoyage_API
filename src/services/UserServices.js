@@ -22,7 +22,31 @@ const getSingle = async (options) => {
     });
 }
 
+const getCover = async (id) => {
+    return await prisma.users.findUnique({
+        where: {
+            userId: id
+        },
+        select: {
+            cover: true
+        }
+    });
+}
+
+const getImage = async (id) => {
+    return await prisma.users.findUnique({
+        where: {
+            userId: id
+        },
+        select: {
+            image: true
+        }
+    });
+}
+
 module.exports = {
     create,
-    getSingle
+    getSingle,
+    getCover,
+    getImage
 }

@@ -2,7 +2,6 @@ const path = require('path');
 const { TourServices } = require("../services")
 
 const searchForTours = async (req, res) => {
-
     const options = {
         title : req.body.title,
         type: req.body.type,
@@ -24,6 +23,12 @@ const searchForTours = async (req, res) => {
 }
 
 const createTour = async (req, res) => {
+    try {
+        await TourServices.create({...req.value , cityId: parseInt(req.body.cityId)}, req.file.filename);
+        res.status(200).json({meassage: "Tour created successfully!"});
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
 }
 
 const getTour = (req, res) => {}
@@ -40,7 +45,14 @@ const markTourAsFavorite = (req, res) => {}
 
 const getToursCount = (req, res) => {}
 
-const getRecommendedTours = (req, res) => {}
+const getRecommendedTours = async (req, res) => {
+    try {
+        let tours = await TourServices.getRecommended();
+        res.status(200).json(tours);
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
+}
 
 const getTourImage = async (req, res) => {
     try {

@@ -6,15 +6,7 @@ const {UsersController} = require("../controllers");
 router
     .route("/")
     .get(UsersController.getUsers);
-
-router
-    .route("/:userId")
-    .get(UsersController.getUserInfos);
-
-router
-    .route("/:userId/ban")
-    .put(UsersController.banUser);
-
+    
 router
     .route("/count")
     .get(UsersController.getUsersCount);
@@ -38,6 +30,15 @@ router
 router
     .route("/premium/count")
     .get(UsersController.getPremiumUsersCount);
+
+router
+    .route("/:userId")
+    .get(UsersController.getUserInfos);
+
+router
+    .route("/:userId/ban")
+    .put(UsersController.banUser);
+
 
 router
     .route("/:userId/profile/image")

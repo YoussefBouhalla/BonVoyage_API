@@ -24,7 +24,22 @@ const getImage = async (id) => {
         }
     });
 }
+
+const getRecommended = async (id) => {
+    return await prisma.tours.findMany({
+        take: 6
+    });
+}
+
+const create = async (options, image) => {
+    return await prisma.tours.create({
+        data: {...options , image}
+    })
+}
+
 module.exports = {
     searchTours,
-    getImage
+    getImage,
+    getRecommended,
+    create
 }
